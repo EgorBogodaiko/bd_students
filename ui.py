@@ -44,16 +44,14 @@ def field_to_correct(db_name):
     """Принимает адрес базы данных, строку, возвращает имя заголовка поля, которое выбрано пользователем"""
     choice=''
     with open(db_name) as f:
-        reader = csv.reader(f)
+        reader = csv.reader(f,delimiter='|')
         headers = next(reader)
-    for row in reader:
-        print(row)
+        print(headers)
     
     while choice not in headers:
-        choice=input('Введите наименование поля, которое нужно изменить')
+        choice=input('Введите наименование поля, которое нужно изменить:  ')
         if choice not in headers:
             print('Нераспознанное поле. Определись и ответь.')
     return choice
 
-field_to_correct('C:\IT_courses\PY\StudentsBD\DB.csv')
 
