@@ -5,8 +5,7 @@ import constants
 db_name = constants.DATA_BASE_NAME
 import delete_row as d
 import edit_row as edit
-
-action = 0
+action = ''
 while action != '6':
     action = ui.get_action()
     if action == '1': show.show_all_bd(db_name)
@@ -31,5 +30,4 @@ while action != '6':
         field_to_correct=ui.field_to_correct(db_name,mod_row)
         new_value=ui.to_input()
         edit.modify_row(db_name,mod_row,field_to_correct, new_value)
-    
 print('Работа завершена.')
