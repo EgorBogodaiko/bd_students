@@ -8,6 +8,8 @@ def check_menu_item(choise:str):
     return check
 
 def checker_field(field:str,value:str):
+    """Принимает: заголовок поля, значение, которое нужно проверить на соответствие формату поля
+    возвращает Булеву функцию ИСТИНА\ЛОЖЬ на соответствие формату"""
     result = False
     if field =='phone_num':
         if len(value)<=11 and value.isdigit():
