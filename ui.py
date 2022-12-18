@@ -74,4 +74,3 @@ def to_input(field):
             print('Некорректный форамт ввода, пробуй ещё раз.')
     return value
 
-print(to_input('first_name'))
