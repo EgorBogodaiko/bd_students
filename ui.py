@@ -1,5 +1,6 @@
 from constants import ABILITIES
 from checkers import check_menu_item as chk_menu
+from checkers import checker_field
 import csv
 
 def get_action():
@@ -55,10 +56,22 @@ def field_to_correct(db_name):
     return choice
 
 
-def to_input():
-    """Ничего не принимает, возвращает строку, которую нужно будет вставить вмест опредыдущего значения"""
-    value=input('Введите новое значение ячейки: ')
-    #Здесь может быть чекер на тип входных данных, но тогда функция должна будет принимать на вход поле, в которое будет внесено изменение.
-    #Чекер сделать отдельным модулем
+def to_input(field):
+    """Принимает имя поля, в которое будет внесено изменение строки, возвращает строку, которую нужно будет вставить вмест опредыдущего значения"""
+    value=''
+   
+    if field=='phone_num':
+        print('Формат ввода: до 11 целых чисел включительно в одну строку, без символов "+", скобок и проблелов.')
+    elif field in ('first_name','last_name'):
+        print('Формат ввода - строка длиной до 30 из буквенных символов')
+    else:
+        print('Формат ввода: строка длиной до 30 симолов, без цифр.')
+    chk=False
+    while chk ==False:
+        value=input('Введите новое значение ячейки: ')
+        chk=checker_field(field,value)
+        if chk==False:
+            print('Некорректный форамт ввода, пробуй ещё раз.')
     return value
 
+print(to_input('first_name'))
