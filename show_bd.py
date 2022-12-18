@@ -12,7 +12,4 @@ def show_all_bd(db_name):
         print(headers)
         for row in reader:
             print(row)
-    
-
-
     return

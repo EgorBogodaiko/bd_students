@@ -2,6 +2,12 @@ from constants import ABILITIES
 from checkers import check_menu_item as chk_menu
 from checkers import checker_field
 import csv
+import constants
+global headers 
+with open(constants.DATA_BASE_NAME) as f:
+    reader = csv.reader(f,delimiter='|')
+    headers = next(reader)
+
 
 def get_action():
     """Ничего не принимает на вход
@@ -56,6 +62,7 @@ def field_to_correct(db_name):
     return choice
 
 
+
 def to_input(field):
     """Принимает имя поля, в которое будет внесено изменение строки, возвращает строку, которую нужно будет вставить вмест опредыдущего значения"""
     value=''
@@ -74,3 +81,15 @@ def to_input(field):
             print('Некорректный форамт ввода, пробуй ещё раз.')
     return value
 
+def get_field_n_value():
+    """Ничего не принимает, 
+    запрашивает у пользователя поле для поиска и значение, которое нужно будет искать.
+    Возвращает кортеж из двух элементов, где первый - поле, второе - значение"""
+    f_n_v = ['','']
+
+    while f_n_v[0] not in headers:
+        f_n_v[0]=input('Укажите поле: ')
+        if f_n_v not in headers:
+            print('Введите существующий заголовок поля')    
+    f_n_v[1]=to_input(f_n_v[0])
+    return f_n_v

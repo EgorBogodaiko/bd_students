@@ -8,7 +8,7 @@ import edit_row as edit
 action = ''
 while action != '6':
     action = ui.get_action()
-    if action == '1': show.show_all_bd(db_name)
+    if action == '1': show.show_all_bd(db_name) # Готово, работает
     if action == '2': 
         f,v=ui.get_field_n_value()
         search.search(db_name,f,v,1)
@@ -23,7 +23,7 @@ while action != '6':
         ui.add_row()
     if action == '5':
         print('Для начала найдём строку')
-        f,v=ui.get_field_n_value()
+        f,v=list(ui.get_field_n_value())
         print('Найдены следующие элементы по этим критериям:')
         search.search(db_name,f,v,1)
         mod_row=ui.row_to_modify(search(db_name,f,v,2))
