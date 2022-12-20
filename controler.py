@@ -13,7 +13,7 @@ while action != '6':
     if action == '2':                           # Готово, работает
         f,v=ui.get_field_n_value()
         search.search(db_name,f,v,1)
-    if action == '3':
+    if action == '3':                           # Готово, работает
         f,v=ui.get_field_n_value()
         print('Найдены следующие элементы по этим критериям:')
         del_list= search.search(db_name,f,v,2)
@@ -22,9 +22,9 @@ while action != '6':
             d.delete_row(db_name,del_list)
         else:
             print('Хорошо, удалять не будем')
-    if action == '4':
+    if action == '4':                           #Марина делает
         ui.add_row()
-    if action == '5':
+    if action == '5':                           #Кто-то делает
         print('Для начала найдём строку')
         f,v=list(ui.get_field_n_value())
         print('Найдены следующие элементы по этим критериям:')
