@@ -8,11 +8,13 @@ def search(bd:str,field:str,value:str,type_output:int):
     """Принимает: базу данных, поле, по которому будет производиться поиск, 
     значение, по которому будет произовдиться поиск,
      тип вывода: 1 - вывести все строки, 2 - вывести идентификаторы найденных строк списком
+     возвращает! список ID найденных строк
      """
     with open(bd) as f:
         reader = csv.DictReader(f,delimiter='|')
         headers=reader.fieldnames
         if type_output == 1:
+            print('\n ')
             print('Найденные строки:')
             print(headers)
             for item in reader:
@@ -24,7 +26,7 @@ def search(bd:str,field:str,value:str,type_output:int):
             for item in reader:
                 if item[field] == value:
                     id_list+=(item['id'])
-            print(id_list)
+            return id_list
         else:
             print('Неизвестный режим работы функции')
 

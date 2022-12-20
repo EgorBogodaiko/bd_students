@@ -12,25 +12,28 @@ with open(constants.DATA_BASE_NAME) as f:
 def get_action():
     """Ничего не принимает на вход
     Вовзращает выбранное действие"""
-
-    print('Из списка ниже выберете желаемое действие: ')
+    print('\n ')
+    print(' Из списка ниже выберете желаемое действие: ')
     for item in ABILITIES:  
         print(item)
     check=False
     while check==False:
-        choise=input('Ввыбор действия: ')
+        print('\n ')
+        choise=input(' Ввыбор действия: ')
         check=chk_menu(choise)
         if check==False:
             print('Что-то невнятное. Попробуйте ввод ещё раз.')
     return choise
 
-def agree():
-    """Ничего не принимает, возращает решение о том, удалять или нет- True или False"""
+def agree(rows_list):
+    """Принимает список ID строк, которые хотят удалить , возращает решение о том, удалять или нет- True или False"""
     dec =''
+    print('\n ')
+    print(f' Точно удалить строки с ID {rows_list}?')
     while dec not in ('Y','N'):
-        dec = input('Введите решение: Y = да, N=нет')
+        dec = input('Введите решение: Y = да, N=нет:  ')
         if dec not in ('Y','N'):
-            print('Нераспознанное решение. Определись и ответь.')
+            print('Нераспознанное решение. Определись и ответь.\n')
     if dec in 'Y': return True
     if dec in 'N': return False
 
@@ -42,7 +45,8 @@ def add_row(db_name):
 def row_to_modify(list_of_availible_rows):
     """Принимает список ключей, из которых можно выбрать ключ нужной строки, возвращает ключ выбранной строки"""
     while dec not in list_of_availible_rows:
-        dec = input('Введите ключ строки(порядковый номер из первого столбца: )')
+        print('\n ')
+        dec = input(' Введите ключ строки(порядковый номер из первого столбца: )')
         if dec not in list_of_availible_rows:
             print('Нераспознанное решение. Определись и ответь.')
     return dec
@@ -56,9 +60,10 @@ def field_to_correct(db_name):
         print(headers)
     
     while choice not in headers:
-        choice=input('Введите наименование поля, которое нужно изменить:  ')
+        print('\n ')
+        choice=input(' Введите наименование поля, которое нужно изменить:  ')
         if choice not in headers:
-            print('Нераспознанное поле. Определись и ответь.')
+            print(' Нераспознанное поле. Определись и ответь.')
     return choice
 
 
@@ -68,19 +73,25 @@ def to_input(field):
     value=''
    
     if field=='phone_num':
-        print('Формат ввода: до 11 целых чисел включительно в одну строку, без символов "+", скобок и проблелов.')
+        print('\n ')
+        print(' Формат ввода: до 11 целых чисел включительно в одну строку, без символов "+", скобок и проблелов.')
     if field=='id':
-        print('Целое число, указывающее на ID строки')
+        print('\n ')
+        print(' Формат ввода: целое число, указывающее на ID строки')
     elif field in ('first_name','last_name'):
-        print('Формат ввода - строка длиной до 30 из буквенных символов')
+        print('\n ')
+        print(' Формат ввода - строка длиной до 30 из буквенных символов')
     else:
-        print('Формат ввода: строка длиной до 30 симолов, без цифр.')
+        print(' Формат ввода: строка длиной до 30 симолов, без цифр.')
     chk=False
-    value=input('Введите новое значение ячейки: ')
+    value=input(' Введите новое значение ячейки: ')
     chk=checker_field(field,value)
     while chk ==False:
-        print('Некорректный форамт ввода, пробуй ещё раз.')
-        chk=checker_field(field,value)           
+        print('\n ')
+        print(' Некорректный форамт ввода, пробуй ещё раз.')
+        value=input(' Введите новое значение ячейки: ')
+        chk=checker_field(field,value) 
+
     
     return value
 
@@ -89,8 +100,9 @@ def get_field_n_value():
     запрашивает у пользователя поле для поиска и значение, которое нужно будет искать.
     Возвращает кортеж из двух элементов, где первый - поле, второе - значение"""
     f_n_v = ['','']
-    f_n_v[0]=input('Укажите поле: ')
+    print('\n ')
+    f_n_v[0]=input(' Укажите поле: ')
     while f_n_v[0] not in headers:
-        f_n_v[0]=input('Введите существующий заголовок поля: ')    
+        f_n_v[0]=input(' Введите существующий заголовок поля: ')    
     f_n_v[1]=to_input(f_n_v[0])
     return f_n_v

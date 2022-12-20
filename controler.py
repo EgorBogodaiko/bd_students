@@ -7,19 +7,21 @@ import delete_row as d
 import edit_row as edit
 action = ''
 while action != '6':
-    
+
     action = ui.get_action()
     if action == '1': show.show_all_bd(db_name) # Готово, работает
-    if action == '2': 
+    if action == '2':                           # Готово, работает
         f,v=ui.get_field_n_value()
         search.search(db_name,f,v,1)
     if action == '3':
         f,v=ui.get_field_n_value()
         print('Найдены следующие элементы по этим критериям:')
-        search.search(db_name,f,v,1)
-        decision=ui.agree()
+        del_list= search.search(db_name,f,v,2)
+        decision=ui.agree(list)
         if decision == True:
-            d.delete_row(db_name,search.search(db_name,f,v,2))
+            d.delete_row(db_name,del_list)
+        else:
+            print('Хорошо, удалять не будем')
     if action == '4':
         ui.add_row()
     if action == '5':
