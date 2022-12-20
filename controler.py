@@ -7,6 +7,7 @@ import delete_row as d
 import edit_row as edit
 action = ''
 while action != '6':
+    
     action = ui.get_action()
     if action == '1': show.show_all_bd(db_name) # Готово, работает
     if action == '2': 

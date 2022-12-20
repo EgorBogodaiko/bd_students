@@ -14,6 +14,9 @@ def checker_field(field:str,value:str):
     if field =='phone_num':
         if len(value)<=11 and value.isdigit():
             result=True
+    elif field =='id':
+        if value.isdigit()==True:
+            result=True
     elif field in ('first_name','last_name'):
         if value.isalpha()==True:
             result = True

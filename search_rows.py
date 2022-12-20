@@ -28,5 +28,5 @@ def search(bd:str,field:str,value:str,type_output:int):
         else:
             print('Неизвестный режим работы функции')
 
-            
-search(constants.DATA_BASE_NAME,'last_name','nono',2)
+
+#search(constants.DATA_BASE_NAME,'last_name','nono',2)

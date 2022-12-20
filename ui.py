@@ -69,16 +69,19 @@ def to_input(field):
    
     if field=='phone_num':
         print('Формат ввода: до 11 целых чисел включительно в одну строку, без символов "+", скобок и проблелов.')
+    if field=='id':
+        print('Целое число, указывающее на ID строки')
     elif field in ('first_name','last_name'):
         print('Формат ввода - строка длиной до 30 из буквенных символов')
     else:
         print('Формат ввода: строка длиной до 30 симолов, без цифр.')
     chk=False
+    value=input('Введите новое значение ячейки: ')
+    chk=checker_field(field,value)
     while chk ==False:
-        value=input('Введите новое значение ячейки: ')
-        chk=checker_field(field,value)
-        if chk==False:
-            print('Некорректный форамт ввода, пробуй ещё раз.')
+        print('Некорректный форамт ввода, пробуй ещё раз.')
+        chk=checker_field(field,value)           
+    
     return value
 
 def get_field_n_value():
@@ -86,10 +89,8 @@ def get_field_n_value():
     запрашивает у пользователя поле для поиска и значение, которое нужно будет искать.
     Возвращает кортеж из двух элементов, где первый - поле, второе - значение"""
     f_n_v = ['','']
-
+    f_n_v[0]=input('Укажите поле: ')
     while f_n_v[0] not in headers:
-        f_n_v[0]=input('Укажите поле: ')
-        if f_n_v not in headers:
-            print('Введите существующий заголовок поля')    
+        f_n_v[0]=input('Введите существующий заголовок поля: ')    
     f_n_v[1]=to_input(f_n_v[0])
     return f_n_v
