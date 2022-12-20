@@ -2,22 +2,31 @@ import csv
 import constants
 import string
 #read csv, and split on "," the line
-global bd
+import ast
 
-with open(constants.DATA_BASE_NAME) as f:
-    bd = csv.reader(f,delimiter='|')
-    headers = next(reader)
-
-def search(bd,fields,vaule,type_output):
+def search(bd:str,field:str,value:str,type_output:int):
     """Принимает: базу данных, поле, по которому будет производиться поиск, 
     значение, по которому будет произовдиться поиск,
-     тип вывода: 1 - вывести все строки, 2 - вывести идентификаторы найденных строк списком"""
-    
-    for row in bd:
-    #if current rows 2nd value is equal to input, print that row
-        row = row.split('|')
-    if number == row[1]:
-         print (row)
+     тип вывода: 1 - вывести все строки, 2 - вывести идентификаторы найденных строк списком
+     """
+    with open(bd) as f:
+        reader = csv.DictReader(f,delimiter='|')
+        headers=reader.fieldnames
+        if type_output == 1:
+            print('Найденные строки:')
+            print(headers)
+            for item in reader:
+                if item[field] == value:
+                    print(list(item.values()))
+        elif type_output == 2:
+            print('Список ID найденных строк:')
+            id_list=[]
+            for item in reader:
+                if item[field] == value:
+                    id_list+=(item['id'])
+            print(id_list)
+        else:
+            print('Неизвестный режим работы функции')
 
-
-    return found_items
+            
+search(constants.DATA_BASE_NAME,'last_name','nono',2)
