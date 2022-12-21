@@ -5,10 +5,10 @@ import constants
 db_name = constants.DATA_BASE_NAME
 import delete_row as d
 import edit_row as edit
+import add_row as add
 def start_bd_controler():
     action = ''
     while action != '6':
-
         action = ui.get_action()
         if action == '1': show.show_all_bd(db_name) # Готово, работает
         if action == '2':                           # Готово, работает
@@ -23,8 +23,8 @@ def start_bd_controler():
                 d.delete_row(db_name,del_list)
             else:
                 print('Хорошо, удалять не будем')
-        if action == '4':                           #Марина делает
-            ui.add_row()
+        if action == '4':                           # Не написана, пишет Константин, Марина, Мариана
+            add.add_row(db_name)
         if action == '5':                           # Готово, работает
             id_row=ui.get_id(db_name)                          
             f,v=ui.get_field_n_value()                     

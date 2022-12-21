@@ -86,8 +86,6 @@ def to_input(field):
         print(' Некорректный форамт ввода, пробуй ещё раз.')
         value=input(' Введите  значение ячейки: ')
         chk=checker_field(field,value) 
-
-    
     return value
 
 def get_field_n_value():
@@ -111,9 +109,7 @@ def get_id(bd):
     with open(bd) as f:
         reader = csv.reader(f,delimiter='|')
         id_list=[x[0] for x in reader]
-    
     while input_id not in id_list or input_id==id_list[0]:
         input_id=input(f'Не существующий ID. \n Список существующих ID: {id_list[1:]} \n Попробуйте снова: ')
-
     return input_id
     

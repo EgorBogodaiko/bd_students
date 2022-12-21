@@ -1,18 +1,15 @@
 import csv
-import constants
-import string
-#read csv, and split on "," the line
-import ast
 
-def search(bd:str,field:str,value:str,type_output:int):
+
+def search(bd: str, field: str, value: str, type_output: int):
     """Принимает: базу данных, поле, по которому будет производиться поиск, 
     значение, по которому будет произовдиться поиск,
-     тип вывода: 1 - вывести все строки, 2 - вывести идентификаторы найденных строк списком
-     возвращает! список ID найденных строк
-     """
+    тип вывода: 1 - вывести все строки, 2 - вывести идентификаторы найденных строк списком
+    возвращает список ID найденных строк
+    """
     with open(bd) as f:
-        reader = csv.DictReader(f,delimiter='|')
-        headers=reader.fieldnames
+        reader = csv.DictReader(f, delimiter='|')
+        headers = reader.fieldnames
         if type_output == 1:
             print('\n ')
             print('Найденные строки:')
@@ -22,13 +19,10 @@ def search(bd:str,field:str,value:str,type_output:int):
                     print(list(item.values()))
         elif type_output == 2:
             print('Список ID найденных строк:')
-            id_list=[]
+            id_list = []
             for item in reader:
                 if item[field] == value:
-                    id_list+=(item['id'])
+                    id_list += (item['id'])
             return id_list
         else:
             print('Неизвестный режим работы функции')
-
-
-#search(constants.DATA_BASE_NAME,'last_name','nono',2)
