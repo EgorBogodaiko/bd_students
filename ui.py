@@ -25,7 +25,7 @@ def get_action():
             print('Что-то невнятное. Попробуйте ввод ещё раз.')
     return choise
 
-def agree(rows_list):
+def agree(rows_list:list):
     """Принимает список ID строк, которые хотят удалить , возращает решение о том, удалять или нет- True или False"""
     dec =''
     print('\n ')

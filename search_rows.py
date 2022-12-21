@@ -22,7 +22,7 @@ def search(bd: str, field: str, value: str, type_output: int):
             id_list = []
             for item in reader:
                 if item[field] == value:
-                    id_list += (item['id'])
+                    id_list += item['id']
             return id_list
         else:
             print('Неизвестный режим работы функции')

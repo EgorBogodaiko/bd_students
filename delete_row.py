@@ -1,7 +1,7 @@
 
 import csv
 import os
-import constants as const
+
 
 def delete_row(bd,rows_numbers):
     """Поулчает на вход адрес БД и список ID строк, которые нужно удалить из БД, ничего не возвращает. """
@@ -17,5 +17,5 @@ def delete_row(bd,rows_numbers):
                 print('Удалена строка  c ID: ',id,'\n')
         input.close()
         output.close()
-    os.remove(const.DATA_BASE_NAME)
-    os.rename('bd1.csv', const.DATA_BASE_NAME)
+    os.remove(bd)
+    os.rename('bd1.csv', bd)

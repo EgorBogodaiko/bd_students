@@ -18,7 +18,7 @@ def start_bd_controler():
             f,v=ui.get_field_n_value()
             print('Найдены следующие элементы по этим критериям:')
             del_list= search.search(db_name,f,v,2)
-            decision=ui.agree(list)
+            decision=ui.agree(del_list)
             if decision == True:
                 d.delete_row(db_name,del_list)
             else:
