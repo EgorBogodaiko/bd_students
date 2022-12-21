@@ -25,11 +25,7 @@ while action != '6':
     if action == '4':                           #Марина делает
         ui.add_row()
     if action == '5':                           #Кто-то делает
-        print('Для начала найдём строку')
-        f,v=list(ui.get_field_n_value())
-        print('Найдены следующие элементы по этим критериям:')
-        search.search(db_name,f,v,1)
-        mod_row=ui.row_to_modify(search(db_name,f,v,2))
+        mod_row=ui.row_to_modify(db_name,f,v,2)
         field_to_correct=ui.field_to_correct(db_name,mod_row)
         new_value=ui.to_input()
         edit.modify_row(db_name,mod_row,field_to_correct, new_value)
