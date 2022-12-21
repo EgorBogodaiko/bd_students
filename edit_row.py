@@ -12,7 +12,6 @@ def modify_row(bd,id_key,field,new_value):
         writer.writerow(headers)
         index_field_to_edit=(headers.index(field))
         for current_row in csv.reader(input,delimiter='|'):
-            print(current_row)
             if current_row[0] == str(id_key):
                 print(f'Подменяем {current_row[index_field_to_edit]} на {new_value}')
                 current_row[index_field_to_edit]=new_value

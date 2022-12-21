@@ -37,11 +37,6 @@ def agree(rows_list):
     if dec in 'Y': return True
     if dec in 'N': return False
 
-def add_row(db_name):
-    """Добавление строки в БД. Принимает базу данных, куда нужно добавить строку, ничего не возвращает"""
-
-    return 
-
 def row_to_modify(list_of_availible_rows):
     """Принимает список ключей, из которых можно выбрать ключ нужной строки, возвращает ключ выбранной строки"""
     while dec not in list_of_availible_rows:
@@ -69,7 +64,7 @@ def field_to_correct(db_name):
 
 
 def to_input(field):
-    """Принимает имя поля, в которое будет внесено изменение строки, возвращает строку, которую нужно будет вставить вмест опредыдущего значения"""
+    """Принимает имя поля, в которое будет внесено изменение строки, возвращает строку, которую нужно будет вставить вместо предыдущего значения"""
     value=''
    
     if field=='phone_num':
@@ -84,12 +79,12 @@ def to_input(field):
     else:
         print(' Формат ввода: строка длиной до 30 симолов, без цифр.')
     chk=False
-    value=input(' Введите новое значение ячейки: ')
+    value=input(' Введите значение ячейки: ')
     chk=checker_field(field,value)
     while chk ==False:
         print('\n ')
         print(' Некорректный форамт ввода, пробуй ещё раз.')
-        value=input(' Введите новое значение ячейки: ')
+        value=input(' Введите  значение ячейки: ')
         chk=checker_field(field,value) 
 
     
@@ -106,3 +101,19 @@ def get_field_n_value():
         f_n_v[0]=input(' Введите существующий заголовок поля: ')    
     f_n_v[1]=to_input(f_n_v[0])
     return f_n_v
+
+def get_id(bd):
+    """Получает на вход адрес базы
+    Запрашивает ID строки, в которой нужно будет заменять значение поля
+    Проверяет на валидность
+    Возвращает id"""
+    input_id= input('Введите id строки, в которой хотите редактировать строку:')
+    with open(bd) as f:
+        reader = csv.reader(f,delimiter='|')
+        id_list=[x[0] for x in reader]
+    
+    while input_id not in id_list or input_id==id_list[0]:
+        input_id=input(f'Не существующий ID. \n Список существующих ID: {id_list[1:]} \n Попробуйте снова: ')
+
+    return input_id
+    
