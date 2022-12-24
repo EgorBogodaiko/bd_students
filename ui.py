@@ -112,4 +112,15 @@ def get_id(bd):
     while input_id not in id_list or input_id==id_list[0]:
         input_id=input(f'Не существующий ID. \n Список существующих ID: {id_list[1:]} \n Попробуйте снова: ')
     return input_id
+
+def give_int_ar(input_number) -> int:
+    '''
+    Функция ввода числа
+    '''
+    while True:
+        try:
+            num = int(input(input_number))  
+            return num
+        except ValueError:
+            print('Вы ввели не число. Введите число.')
     
